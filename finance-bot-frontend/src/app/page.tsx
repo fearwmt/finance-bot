@@ -149,9 +149,8 @@ export default function Home() {
                     `}
                   >
                     <span
-                      className={`absolute -top-1 -left-1 h-2 w-2 rounded-full ${
-                        line.sender === "user" ? "bg-fuchsia-300" : "bg-cyan-300"
-                      } shadow-[0_0_8px_#ffffff]`}
+                      className={`absolute -top-1 -left-1 h-2 w-2 rounded-full ${line.sender === "user" ? "bg-fuchsia-300" : "bg-cyan-300"
+                        } shadow-[0_0_8px_#ffffff]`}
                     />
                     {line.text}
                   </div>
@@ -166,6 +165,12 @@ export default function Home() {
                 placeholder="พิมพ์ ‘กาแฟ 50’ / ‘เงินเดือน 25000’ หรือ ‘เล่าเรื่องตลก’"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                  }
+                }}
               />
               <button
                 className="rounded-xl px-6 py-3 font-semibold text-black bg-gradient-to-r from-cyan-300 to-fuchsia-300 hover:from-cyan-200 hover:to-fuchsia-200 transition shadow-[0_0_22px_#22d3ee80] active:scale-[0.98]"
