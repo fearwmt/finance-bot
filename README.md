@@ -19,4 +19,4 @@ npm run dev
 - คำนวณ **Forecast สิ้นเดือน** จากค่าใช้จ่ายเฉลี่ย
 - ถาม-ตอบทั่วไปได้เหมือน ChatGPT เช่น `เล่าเรื่องตลก`, `AI คืออะไร?`
 
-![Uploading screencapture-localhost-3001-2025-09-06-11_02_36.png…]()
+<img width="1920" height="1036" alt="screencapture-localhost-3001-2025-09-06-11_02_36" src="https://github.com/user-attachments/assets/68bba073-a013-4601-85dd-2980b2b79d57" />
