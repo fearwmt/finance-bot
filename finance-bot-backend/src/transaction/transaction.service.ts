@@ -34,11 +34,8 @@ export class TransactionService {
 
   const now = new Date();
   const y = now.getUTCFullYear();
-  const m = now.getUTCMonth(); 
+  const m = now.getUTCMonth();
   const daysInMonth = new Date(y, m + 1, 0).getDate();
-
-  const dayOfMonth = now.getUTCDate();  
-  const daysPassed = Math.max(1, Math.floor(dayOfMonth));
 
   const monthTx = all.filter((t) => {
     const d = new Date(t.date);
@@ -55,7 +52,7 @@ export class TransactionService {
     const signed = t.type === 'expense' ? -t.amount : t.amount;
 
     if (desc.includes('เงินเดือน')) {
-      fixedIncome += signed; 
+      fixedIncome += signed;
     } else {
       variableTx.push(signed);
     }
@@ -63,16 +60,15 @@ export class TransactionService {
 
   const netSoFar = variableTx.reduce((s, n) => s + n, 0);
 
-  const dailyAvg = netSoFar / daysPassed;
+  const uniqueDays = new Set(monthTx.map(t => new Date(t.date).getUTCDate()));
+  const daysPassed = Math.max(1, uniqueDays.size);
 
+  const dailyAvg = netSoFar / daysPassed;
   const forecast = fixedIncome + dailyAvg * daysInMonth;
 
   console.log({
     now: now.toISOString(),
-    y,
-    m,
     daysInMonth,
-    dayOfMonth,
     daysPassed,
     fixedIncome,
     variableTx,
@@ -83,5 +79,6 @@ export class TransactionService {
 
   return { forecast };
 }
+
 
 }
